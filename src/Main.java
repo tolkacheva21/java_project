@@ -28,6 +28,17 @@ public class Main {
         System.out.println(house2);
         System.out.println(house3);*/
 
-
+        Dot point1 = new Dot(1, 3);
+        Dot point2 = new Dot(23, 8);
+        Dot point3 = new Dot(5, 10);
+        Dot point4 = new Dot(25, 10);
+        Line line1 = new Line(point1, point2);
+        Line line2 = new Line(point3, point4);
+        Line line3 = new Line(point1, point4);
+        point1.y = 5;
+        point3.x = 7;
+        System.out.println(line1);
+        System.out.println(line2);
+        System.out.println(line3);
     }
 }
