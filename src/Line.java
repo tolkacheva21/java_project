@@ -1,7 +1,7 @@
 public class Line {
-    Dot point1 = new Dot(4, -5);
-    Dot point2 = new Dot(-1, 2);
-    public Line(Dot start, Dot end){
+    Point point1 = new Point(4, -5);
+    Point point2 = new Point(-1, 2);
+    public Line(Point start, Point end){
         this.point1 = start;
         this.point2 = end;
     }

@@ -1,68 +1,50 @@
 public class Main {
     public static void main(String[] args) {
+//        int[] marks = {3, 4, 5};
+//        Student student = new Student("Vasya", marks);
+//        System.out.println(student);
 
-        /*Name name1 = new Name("Cleopatra", null, null);
-        Name name2 = new Name("Pushkin", "Alexandr", "Sergeevich");
-        Name name3 = new Name("Mayakovskiy", "Vladimir", null);
-        Human man1 = new Human(name1, 152);
-        Human man2 = new Human(name2, 167);
-        Human man3 = new Human(name3, 189);*/
-        /*System.out.println(name1);
-        System.out.println(name2);
-        System.out.println(name3);*/
-        /*System.out.println(man1);
-        System.out.println(man2);
-        System.out.println(man3);*/
-
-
-
-        /*Time time1 = new Time(10);
-        Time time2 = new Time(10000);
-        Time time3 = new Time(100000);
-        System.out.println(time1);
-        System.out.println(time2);
-        System.out.println(time3);*/
-
-        /*House house1 = new House(1);
-        House house2 = new House(5);
-        House house3 = new House(23);
-        System.out.println(house1);
-        System.out.println(house2);
-        System.out.println(house3);*/
-
-        /*Dot point1 = new Dot(1, 3);
-        Dot point2 = new Dot(23, 8);
-        Dot point3 = new Dot(5, 10);
-        Dot point4 = new Dot(25, 10);
-        Line line1 = new Line(point1, point2);
-        Line line2 = new Line(point3, point4);
-        Line line3 = new Line(point1, point4);
-        point1.y = 5;
-        point3.x = 7;
+        /*Point point1 = new Point(1, 5);
+        Point point2 = new Point(2, 8);
+        Point point3 = new Point(5, 3);
+        Point[] points1 = new Point[3];
+        points1[0] = point1;
+        points1[1] = point2;
+        points1[2] = point3;
+        Point point4 = new Point(2, -5);
+        Point point5 = new Point(4, -8);
+        Point[] points2 = new Point[4];
+        points2[0] = point1;
+        points2[1] = point4;
+        points2[2] = point5;
+        points2[3] = point3;
+        BrokenLine line1 = new BrokenLine(points1);
+        BrokenLine line2 = new BrokenLine(points2);
         System.out.println(line1);
-        System.out.println(line2);
-        System.out.println(line3);*/
+        System.out.println(line2);*/
 
-        /*Name name4 = new Name("Chudov", "Ivan", null);
-        Name name5 = new Name("Chudov", "Petr", null);
-        Name name6 = new Name(null, "Boris", null);
-        Human man4 = new Human(name4, 180, null);
-        Human man5 = new Human(name5, 192, man4);
-        Human man6 = new Human(name6, 187, man5);
-        System.out.println(man4);
-        System.out.println(man5);
-        System.out.println(man6);*/
+        /*Way way1 = new Way("Engels", 50);
+        Way way2 = new Way("Balashov", 550);
+        Way way3 = new Way("Marks", 300);
+        Way[] ways = new Way[3];
+        ways[0] = way1;
+        ways[1] = way2;
+        ways[2] = way3;
+        City city = new City("Saratov", ways);
+        System.out.println(city);*/
 
-        Department department = new Department("IT");
-        Worker worker1 = new Worker("Petrov");
-        Worker worker2 = new Worker("Kozlov");
-        Worker worker3 = new Worker("Sidorov");
+        /*Worker worker1 = new Worker("Vasya");
+        Worker worker2 = new Worker("Anton");
+        Worker worker3 = new Worker("Sergey");
+        Worker[] workers = new Worker[3];
+        workers[0] = worker1;
+        workers[1] = worker2;
+        workers[2] = worker3;
+        Department department = new Department("VrLab", workers);
         worker1.department = department;
         worker2.department = department;
         worker3.department = department;
         department.boss = worker2;
-        System.out.println(worker1);
-        System.out.println(worker2);
-        System.out.println(worker3);
+        System.out.println(department);*/
     }
 }
