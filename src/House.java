@@ -1,5 +1,5 @@
 public class House {
-    int n;
+    final int n;
 
     public House(int n) {
         this.n = n;

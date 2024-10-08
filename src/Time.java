@@ -1,9 +1,36 @@
 public class Time {
-    int sec;
+    private int sec;
 
     public Time(int sec) {
+        if (sec < 0) throw new IllegalArgumentException("seconds must be positive");
         this.sec = sec;
     }
+
+    public Time(int hours, int minutes, int sec) {
+        this(hours * 3600 + minutes * 60 + sec);
+    }
+
+    public int getHours(){
+        if ((sec / 3600) / 24 != 0) return sec / 3600 / 24;
+        return sec / 3600;
+    }
+
+    public int getMinutes(){
+        return sec / 60 % 60;
+    }
+
+    public int getSeconds(){
+        return sec % 60 % 60;
+    }
+
+//    public int getSec() {
+//        return sec;
+//    }
+//
+//    public void setSec(int sec) {
+//        if (sec < 0) throw new IllegalArgumentException("seconds must be positive");
+//        this.sec = sec;
+//    }
 
     public String toString(){
         String hours = String.valueOf(sec / 3600);

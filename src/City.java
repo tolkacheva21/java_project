@@ -9,6 +9,10 @@ public class City {
         this.ways = ways;
     }
 
+    public City(String name) {
+        this(name, null);
+    }
+
     public String toString(){
         return name + " ways to " + Arrays.toString(ways);
     }

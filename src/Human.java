@@ -2,11 +2,26 @@ public class Human {
     Name name;
     int height;
     Human father;
+    String personalName;
 
     public Human(Name name, int height, Human father) {
         this.name = name;
         this.height = height;
         this.father = father;
+    }
+
+    public Human(String personalName, int height, Human father) {
+        this.personalName = personalName;
+        this.height = height;
+        this.father = father;
+    }
+
+    public Human(String personalName, int height) {
+        this(personalName, height, null);
+    }
+
+    public Human(Name name, int height) {
+        this(name, height, null);
     }
 
     public String toString(){
