@@ -2,12 +2,16 @@ public class Time {
     private int sec;
 
     public Time(int sec) {
-        if (sec < 0) throw new IllegalArgumentException("seconds must be positive");
+        if (sec < 0 || sec > 24 * 3600) throw new IllegalArgumentException("seconds must be positive");
         this.sec = sec;
     }
 
     public Time(int hours, int minutes, int sec) {
         this(hours * 3600 + minutes * 60 + sec);
+        if (hours < 0 || hours > 24 || minutes < 0
+                || minutes > 24 * 60 ||
+                sec < 0 || sec > 24 * 3600) throw new IllegalArgumentException("time must be positive " +
+                "and less 24 hours");
     }
 
     public int getHours(){
@@ -23,14 +27,14 @@ public class Time {
         return sec % 60 % 60;
     }
 
-//    public int getSec() {
-//        return sec;
-//    }
-//
-//    public void setSec(int sec) {
-//        if (sec < 0) throw new IllegalArgumentException("seconds must be positive");
-//        this.sec = sec;
-//    }
+    public int getSec() {
+        return sec;
+    }
+
+    public void setSec(int sec) {
+        if (sec < 0  || sec > 24 * 3600) throw new IllegalArgumentException("seconds must be positive");
+        this.sec = sec;
+    }
 
     public String toString(){
         String hours = String.valueOf(sec / 3600);

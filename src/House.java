@@ -1,8 +1,13 @@
 public class House {
-    final int n;
+    private final int n;
 
     public House(int n) {
+        if (n <= 0) throw new IllegalArgumentException("flats must be positive");
         this.n = n;
+    }
+
+    public int getN() {
+        return n;
     }
 
     public String toString(){

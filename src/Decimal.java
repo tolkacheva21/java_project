@@ -1,10 +1,19 @@
 public class Decimal {
-    int chisl;
-    int znam;
+    private final int chisl;
+    private final int znam;
 
     public Decimal(int chisl, int znam) {
+        if (znam <= 0) throw new IllegalArgumentException("znam must be positive");
         this.chisl = chisl;
         this.znam = znam;
+    }
+
+    public int getChisl() {
+        return chisl;
+    }
+
+    public int getZnam() {
+        return znam;
     }
 
     public String sum(int chisl2, int znam2){

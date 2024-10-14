@@ -22,8 +22,7 @@ public class BrokenLine {
     public long lenghtBrokeLine(){
         long res = 0;
         for (int i = 0; i < points.size() - 1; i++){
-            res += Math.round(Math.sqrt(Math.pow(points.get(i).x - points.get(i+1).x, 2)
-                    + Math.pow(points.get(i).y - points.get(i+1).y, 2)));
+            res += new Line(points.get(i), points.get(i+1)).lenghtLine();
         }
         return res;
     }

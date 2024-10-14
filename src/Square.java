@@ -1,14 +1,24 @@
 public class Square {
     Point point;
-    int len;
+    private int len;
 
     public Square(Point point, int len) {
+        if (len <= 0) throw new IllegalArgumentException("len must be positive");
         this.point = point;
         this.len = len;
     }
 
     public Square(int x, int y, int len){
         this(new Point(x, y), len);
+    }
+
+    public int getLen() {
+        return len;
+    }
+
+    public void setLen(int len) {
+        if (len <= 0) throw new IllegalArgumentException("len must be positive");
+        this.len = len;
     }
 
     public BrokenLine isPointsSquare(){
