@@ -3,9 +3,8 @@ public class Square {
     private int len;
 
     public Square(Point point, int len) {
-        if (len <= 0) throw new IllegalArgumentException("len must be positive");
+        setLen(len);
         this.point = point;
-        this.len = len;
     }
 
     public Square(int x, int y, int len){
@@ -21,8 +20,8 @@ public class Square {
         this.len = len;
     }
 
-    public BrokenLine isPointsSquare(){
-        return new BrokenLine(point, new Point(point.x + len, point.y),
+    public Polyline isPointsSquare(){
+        return new Polyline(point, new Point(point.x + len, point.y),
                 new Point(point.x + len, point.y - len),
                 new Point(point.x - len, point.y));
     }

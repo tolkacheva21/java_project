@@ -1,13 +1,21 @@
 public class Way {
-    String name;
-    int pay;
+    private final City toCity;
+    private int price;
 
-    public Way(String name, int pay) {
-        this.name = name;
-        this.pay = pay;
+    public Way(City toCity, int price){
+        this.toCity = toCity;
+        this.price = price;
     }
 
-    public String toString(){
-        return name + ": " + pay;
+
+    public City getToCity() {
+        return toCity;
+    }
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 }

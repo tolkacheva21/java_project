@@ -1,8 +1,8 @@
-public class Decimal {
+final class Fraction {
     private final int chisl;
     private final int znam;
 
-    public Decimal(int chisl, int znam) {
+    public Fraction(int chisl, int znam) {
         if (znam <= 0) throw new IllegalArgumentException("znam must be positive");
         this.chisl = chisl;
         this.znam = znam;

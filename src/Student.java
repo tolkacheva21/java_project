@@ -7,12 +7,8 @@ public class Student {
     private List<Integer> marks;
 
     public Student(String name, List<Integer> marks) {
-        if (name == null || name.isBlank()) throw new IllegalArgumentException("name must not be empty");
-        this.name = name;
-        for (int x: marks){
-            if (x < 2 || x > 5) throw new IllegalArgumentException("mark must be (2-5)");
-            this.marks.add(x);
-        }
+        setName(name);
+        setMarks(marks);
     }
 
     public Student(String name, Integer...marks){
@@ -31,8 +27,8 @@ public class Student {
     public void setMarks(List<Integer> marks) {
         for (int x: marks){
             if (x < 2 || x > 5) throw new IllegalArgumentException("mark must be (2-5)");
-            this.marks.add(x);
         }
+        this.marks.addAll(marks);
     }
 
     public String getName() {

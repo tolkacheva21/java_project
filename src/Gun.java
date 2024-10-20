@@ -1,11 +1,15 @@
 public class Gun {
-    private int patrons = 3;
+    private int patrons;
     private final int max;
 
     public Gun(int patrons, int max) {
         if (patrons < 0 || max < 0) throw new IllegalArgumentException("patrons must be positive");
         this.patrons = patrons;
         this.max = max;
+    }
+
+    public Gun(int max) {
+        this(3, max);
     }
 
     public void setPatrons(int patrons) {

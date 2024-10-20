@@ -2,34 +2,32 @@ public class Worker {
     private String name;
     private Department department;
 
-    public Worker(String name, Department department) {
+    public Worker(String name){
         this.name = name;
-        this.department = department;
     }
 
     public void setName(String name) {
         this.name = name;
     }
-
     public void setDepartment(Department department) {
-        this.department = new Department(department.getName(), department.getWorkers());
-    }
-
-    public String getName() {
-        return name;
+        if (this.department == department) return;
+        if (this.department != null){
+            this.department.removeWorker(this);
+        }
+        this.department = department;
+        if (department != null){
+            this.department.addWorker(this);
+        }
     }
 
     public Department getDepartment() {
-        return new Department(department.getName(), department.getWorkers());
+        return department;
+    }
+    public String getName(){
+        return name;
     }
 
-    public String toString() {
-        if (department == null){
-            return name + " has no work :(";
-        }
-        else if (department.getBoss() == this){
-            return name + " is boss of " + department.getName();
-        }
-        return name + " works in " + department;
+    public String toString(){
+        return department.getInfoAbout(this);
     }
 }

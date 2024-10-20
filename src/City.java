@@ -1,36 +1,60 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class City {
-    String name;
+    private String name;
     private List<Way> ways;
 
-    public City(String name, List<Way> ways) {
+    public City(String name, List<Way> ways){
         this.name = name;
         this.ways = ways;
     }
 
-    public City(String name) {
-        this(name, null);
+    public City(String name, Way...ways) {
+        this(name, Arrays.asList(ways));
     }
 
-    public List<Way> getWays() {
+    public City(City city){
+        this.name = city.getName();
+        this.ways = city.getWays();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Way> getWays() {
         return new ArrayList<>(ways);
     }
 
-    public void setWays(List<Way> ways) {
-        this.ways = new ArrayList<>(ways);
+    public boolean containsWay(City city){
+        for (Way w : ways) {
+            if (w.getToCity() == city) return true;
+        }
+        return false;
     }
 
-    public void addWay(Way way){
-        ways.add(way);
+    public void addWay(Way newWay){
+        if (containsWay(newWay.getToCity())) return;
+        ways.add(newWay);
     }
 
-    public Way removeWay(){
-        return ways.removeLast();
+    public void addWay(City toCity, int price){
+        addWay(new Way(toCity, price));
     }
 
+    public void removeWay(Way way){
+        if (!ways.contains(way)) return;
+        ways.remove(way);
+    }
+
+    @Override
     public String toString(){
-        return name + " ways to " + ways;
+        String res = "";
+        for (Way way : ways){
+            res += way.getToCity().getName() + ": " + way.getPrice() +"\n";
+        }
+        return "City " + name + ":\n" + res;
     }
 }

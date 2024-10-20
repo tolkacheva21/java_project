@@ -8,19 +8,21 @@ public class Line {
     }
 
     public void setPoint1(Point point1) {
-        this.point1 = new Point(point1.x, point1.y);
+        this.point1.x = point1.x;
+        this.point1.y = point1.y;
     }
 
     public void setPoint2(Point point2) {
-        this.point2 = new Point(point2.x, point2.y);
+        this.point2.x = point2.x;
+        this.point2.y = point2.y;
     }
 
     public Point getPoint1() {
-        return new Point(point1.x, point1.y);
+        return point1;
     }
 
     public Point getPoint2() {
-        return new Point(point2.x, point2.y);
+        return point2;
     }
 
     public Line(int x1, int y1, int x2, int y2) {
