@@ -24,19 +24,16 @@ public class City {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public ArrayList<Way> getWays() {
         return new ArrayList<>(ways);
     }
 
-    public boolean containsWay(City city){
-        for (Way w : ways) {
-            if (w.getToCity() == city) return true;
-        }
-        return false;
-    }
-
     public void addWay(Way newWay){
-        if (containsWay(newWay.getToCity())) return;
+        if (ways.contains(newWay)) return;
         ways.add(newWay);
     }
 

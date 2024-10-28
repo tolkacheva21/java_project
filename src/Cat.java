@@ -1,15 +1,15 @@
-public class Cat {
+public class Cat implements Meowable{
     String name;
 
     public Cat(String name) {
         this.name = name;
     }
 
-    public void mur(){
+    public void meow(){
         System.out.println(name + ": мяу");
     }
 
-    public void murN(int n){
+    public void meowN(int n){
         String res = name + ": ";
         for (int i = 0; i < n; i++){
             if (i == n-1) res += "мяу!";

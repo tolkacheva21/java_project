@@ -1,4 +1,4 @@
-final class Fraction {
+final class Fraction extends Number{
     private final int chisl;
     private final int znam;
 
@@ -34,5 +34,25 @@ final class Fraction {
 
     public String toString(){
         return chisl + "/" + znam;
+    }
+
+    @Override
+    public int intValue() {
+        return 0;
+    }
+
+    @Override
+    public long longValue() {
+        return 0;
+    }
+
+    @Override
+    public float floatValue() {
+        return 0;
+    }
+
+    @Override
+    public double doubleValue() {
+        return 0;
     }
 }

@@ -5,13 +5,16 @@ public class BackToCity extends City{
         super(name, ways);
     }
 
-    public void addWay(Way newWay, Way back){
-        super.addWay(newWay);
-        if (super.getWays().contains(back)) return;
-        super.addWay(back);
+    public BackToCity(String name, Way... ways) {
+        super(name, ways);
     }
 
-    public void addWay(City toCity, int price, City backCity){
-        this.addWay(new Way(toCity, price), new Way(backCity, price));
+    @Override
+    public void addWay(City city, int cost){
+        super.addWay(city, cost);
+        for (Way w: this.getWays()){
+            if (this == w.getToCity()) return;
+        }
+        city.addWay(this, cost);
     }
 }
