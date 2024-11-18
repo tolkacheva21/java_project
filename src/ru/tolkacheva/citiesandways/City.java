@@ -3,6 +3,7 @@ package ru.tolkacheva.citiesandways;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class City {
     private String name;
@@ -55,5 +56,17 @@ public class City {
             res += way.getToCity().getName() + ": " + way.getPrice() +"\n";
         }
         return "ru.tolkacheva.citiesandways.City " + name + ":\n" + res;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof City city)) return false;
+        return this.getWays().size() == city.getWays().size() && city.getWays().containsAll(this.getWays());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, ways);
     }
 }

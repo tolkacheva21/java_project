@@ -1,25 +1,25 @@
 package ru.tolkacheva.office;
 
 public class Worker {
-    private String name;
+    String name;
     Department department;
 
     public Worker(String name){
-        this.name = name;
+        setName(name);
     }
 
     public void setName(String name) {
         this.name = name;
     }
+
     public void setDepartment(Department department) {
-        if (this.department == department) return;
-        if (this.department != null){
-            this.department.removeWorker(this);
+        if (department == this.department) return;
+        if (this.department != null) {
+            if (this.department.boss == this)  this.department.boss = null;
+            this.department.workerList.remove(this);
         }
         this.department = department;
-        if (department != null){
-            this.department.addWorker(this);
-        }
+        if (department != null) department.workerList.add(this);
     }
 
     public Department getDepartment() { return department; }

@@ -1,6 +1,6 @@
 package ru.tolkacheva.differentclasses;
 
-final public class Fraction extends Number{
+final public class Fraction extends Number implements Cloneable{
     private final int chisl;
     private final int znam;
 
@@ -59,7 +59,11 @@ final public class Fraction extends Number{
     }
 
     @Override
-    public Fraction clone() throws CloneNotSupportedException {
-        return new Fraction(getChisl(), getZnam());
+    public Fraction clone() {
+        try {
+            return (Fraction) super.clone();
+        } catch (CloneNotSupportedException e){
+            throw new RuntimeException(e);
+        }
     }
 }

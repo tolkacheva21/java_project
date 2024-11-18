@@ -13,22 +13,33 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Point> pts = new ArrayList<>();
-        pts.add(new Point(1, 4));
-        pts.add(new Point(7, 8));
-        pts.add(new Point(1, 2));
-        pts.add(new Point(5, 6));
-        pts.sort(new PointComparator());
-        System.out.println(pts);
+        Fraction fr1 = new Fraction(1, 2);
+        Fraction fr2 = fr1.clone();
+        System.out.println(fr2);
+
+        Point p1 = new Point(1, 2);
+        Point p2 = p1.clone();
+        System.out.println(p2);
+
+        Line l1 = new Line(1, 2, 3, 4);
+        Line l2 = l1.clone();
+        System.out.println(l2);
     }
 
-    public static void addMany(List<Student> stds, int x){
-        for (Student std: stds){
-            std.rule = new RangeRule(2, 5);
-            try {
-                std.setMarks(List.of(x));
-            }catch (IllegalArgumentException e){
-                throw new IllegalGradeException(x);
+    public static void test(Meowable meowable){
+        meowable.meow();
+        meowable.meow();
+    }
+
+    public static void addMany(List<Student> stds, int x) {
+        int i = 0;
+        try {
+            for (; i < stds.size(); i++){
+                stds.get(i).setMarks(List.of(x));
+            }
+        } catch (IllegalGradeException e){
+            for (int j = i - 1; j >= 0; j--){
+                stds.remove(stds.get(j));
             }
         }
     }

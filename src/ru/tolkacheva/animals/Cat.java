@@ -21,6 +21,6 @@ public class Cat implements Meowable{
     }
 
     public String toString(){
-        return "ru.tolkacheva.animals.Cat: " + name;
+        return "Cat: " + name;
     }
 }

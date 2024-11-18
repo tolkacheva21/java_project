@@ -7,8 +7,8 @@ import java.util.function.Predicate;
 
 public class Student {
     private String name;
-    public Cheker rule;
-    private List<Integer> marks;
+    private Cheker rule;
+    private List<Integer> marks = new ArrayList<>();
     //private Predicate<Integer> rule1 = new AllGood();
 
     public Student(String name, List<Integer> marks) {
@@ -22,7 +22,7 @@ public class Student {
     }
 
     public Student(String name) {
-        this(name, (List<Integer>) null);
+        this(name, new ArrayList<>());
     }
 
     public void setName(String name) {
@@ -30,9 +30,9 @@ public class Student {
         this.name = name;
     }
 
-    public void setMarks(List<Integer> marks) {
+    public void setMarks(List<Integer> marks) throws IllegalGradeException {
         for (int x : marks) {
-            if (rule.check(x)) throw new IllegalArgumentException("mark must be (2-5)");
+            if (!rule.check(x)) throw new IllegalArgumentException("mark must be (2-5)");
         }
         this.marks.addAll(marks);
     }

@@ -1,6 +1,8 @@
 package ru.tolkacheva.geometry;
 
-public class Line implements Lengthable{
+import java.util.Objects;
+
+public class Line implements Lengthable, Cloneable{
     private Point point1;
     private Point point2;
 
@@ -40,7 +42,26 @@ public class Line implements Lengthable{
     }
 
     @Override
-    public Line clone() throws CloneNotSupportedException {
-        return new Line(getPoint1(), getPoint2());
+    public Line clone() {
+        try {
+            Point p1 = point1.clone();
+            Point p2 = point2.clone();
+            return (Line) super.clone();
+        } catch (CloneNotSupportedException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Line line = (Line) o;
+        return point1.equals(line.point1) && point2.equals(line.point2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(point1, point2);
     }
 }
