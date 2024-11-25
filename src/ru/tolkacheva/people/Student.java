@@ -1,11 +1,13 @@
 package ru.tolkacheva.people;
 
+import ru.tolkacheva.differentclasses.Comparable;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class Student {
+public class Student implements Comparable<Student> {
     private String name;
     private Cheker rule;
     private List<Integer> marks = new ArrayList<>();
@@ -45,8 +47,8 @@ public class Student {
         return new ArrayList<>(marks);
     }
 
-    public double srMark() {
-        return marks.stream().mapToInt(x -> x).average().orElse(0);
+    public int srMark() {
+        return (int)marks.stream().mapToInt(x -> x).average().orElse(0);
     }
 
     public boolean status() {
@@ -55,5 +57,12 @@ public class Student {
 
     public String toString() {
         return name + ": " + marks;
+    }
+
+    @Override
+    public int compare(Student student) {
+        if (this.srMark() > student.srMark()) return 1;
+        else if (this.srMark() == student.srMark()) return 0;
+        return -1;
     }
 }

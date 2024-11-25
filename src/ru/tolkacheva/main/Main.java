@@ -2,8 +2,11 @@ package ru.tolkacheva.main;
 
 import ru.tolkacheva.animals.*;
 import ru.tolkacheva.birds.*;
-import ru.tolkacheva.differentclasses.Fraction;
+import ru.tolkacheva.differentclasses.Box;
+import ru.tolkacheva.differentclasses.Stack;
+import ru.tolkacheva.differentclasses.Storage;
 import ru.tolkacheva.geometry.*;
+import ru.tolkacheva.karate.*;
 import ru.tolkacheva.people.*;
 
 import static java.lang.Integer.parseInt;
@@ -13,17 +16,32 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Fraction fr1 = new Fraction(1, 2);
-        Fraction fr2 = fr1.clone();
-        System.out.println(fr2);
+        Box<Integer> box = new Box<>();
+        box.setObj(3);
+        System.out.println(box.getObj());
 
-        Point p1 = new Point(1, 2);
-        Point p2 = p1.clone();
-        System.out.println(p2);
+        Storage<Integer> st1 = new Storage<>(null);
+        System.out.println(st1.getObj(0));
+        Storage<Integer> st2 = new Storage<>(99);
+        System.out.println(st2.getObj(-1));
+        Storage<String> st3 = new Storage<>(null);
+        System.out.println(st3.getObj("default"));
+        Storage<String> st4 = new Storage<>("hello");
+        System.out.println(st4.getObj("hello world"));
 
-        Line l1 = new Line(1, 2, 3, 4);
-        Line l2 = l1.clone();
-        System.out.println(l2);
+        Student std1 = new Student("A", 5, 5, 4);
+        Student std2 = new Student("A", 5, 3, 2);
+        System.out.println(std2.compare(std1));
+
+        Point3D p1 = new Point3D(1, 2, 3);
+        Point3D p2 = new Point3D(3, 4, 5);
+        Line<Point3D> line = new Line<>(p1, p2);
+        System.out.println(line);
+
+        Stack<Point> stack = new Stack<>();
+        stack.push(p1);
+        stack.push(p2);
+        stack.peek();
     }
 
     public static void test(Meowable meowable){
