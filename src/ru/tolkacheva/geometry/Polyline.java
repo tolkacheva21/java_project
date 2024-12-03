@@ -30,7 +30,7 @@ public class Polyline implements Lengthable, PolylineGetable{
     public long lengthLine(){
         long res = 0;
         for (int i = 0; i < points.size() - 1; i++){
-            res += new Line(points.get(i), points.get(i+1)).lengthLine();
+            res += Line.of(points.get(i), points.get(i+1)).lengthLine();
         }
         return res;
     }

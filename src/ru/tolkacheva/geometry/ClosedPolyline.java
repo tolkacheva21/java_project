@@ -14,6 +14,6 @@ public class ClosedPolyline extends Polyline{
     @Override
     public long lengthLine() {
         if (points.size() < 3) return super.lengthLine();
-        return super.lengthLine() + new Line(points.getFirst(), points.getLast()).lengthLine();
+        return super.lengthLine() + Line.of(points.getFirst(), points.getLast()).lengthLine();
     }
 }

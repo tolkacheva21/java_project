@@ -6,19 +6,21 @@ public class Line<T extends Point> implements Lengthable, Cloneable {
     private T point1;
     private T point2;
 
-    public Line(T start, T end){
-        this.point1 = start;
-        this.point2 = end;
+    private Line(T start, T end){
+        setPoint1(start);
+        setPoint2(end);
     }
 
+    @SuppressWarnings("unchecked")
     public void setPoint1(T point1) {
-        this.point1.x = point1.x;
-        this.point1.y = point1.y;
+        if (point2 != null && point2.getClass() != point1.getClass()) throw new RuntimeException();
+        this.point1 = (T) point1.clone();
     }
 
+    @SuppressWarnings("unchecked")
     public void setPoint2(T point2) {
-        this.point2.x = point2.x;
-        this.point2.y = point2.y;
+        if (point1 != null && point1.getClass() != point2.getClass()) throw new RuntimeException();
+        this.point2 = (T) point2.clone();
     }
 
     public T getPoint1() {
@@ -29,12 +31,17 @@ public class Line<T extends Point> implements Lengthable, Cloneable {
         return point2;
     }
 
-    public Line(int x1, int y1, int x2, int y2) {
-        this((T) new Point(x1, y1), (T) new Point(x2, y2));
+    public static <V extends Point> Line<V> of(V start, V end){
+        if (start.getClass() != end.getClass()) throw new RuntimeException();
+        return new Line<>(start, end);
+    }
+
+    public static Line<Point> of(int x1, int y1, int x2, int y2) {
+        return new Line<>(new Point(x1, y1), new Point(x2, y2));
     }
 
     public long lengthLine(){
-        return Math.round(Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2)));
+        return point1.distance(point2);
     }
 
     public String toString(){

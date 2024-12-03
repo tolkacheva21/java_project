@@ -1,6 +1,7 @@
 package ru.tolkacheva.differentclasses;
 
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.List;
 
 public class Stack <T>{
@@ -11,13 +12,14 @@ public class Stack <T>{
     }
 
     public T pop(){
+        if (arr == null || arr.isEmpty()) throw new EmptyStackException();
         T temp = arr.getLast();
         arr.remove(arr.getLast());
         return temp;
     }
 
-    public void peek(){
-        System.out.println(arr.getLast());
+    public T peek(){
+        return arr.getLast();
     }
 
     public String toString(){

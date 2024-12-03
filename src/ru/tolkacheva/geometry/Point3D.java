@@ -15,6 +15,11 @@ public class Point3D extends Point {
     }
 
     @Override
+    public long distance(Point point) {
+        return super.distance(point);
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

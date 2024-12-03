@@ -3,7 +3,7 @@ package ru.tolkacheva.geometry;
 import java.util.Objects;
 
 public class Point implements Comparable<Point>, Cloneable{
-    int x, y;
+    public int x, y;
 
     public Point(int x, int y) {
         this.x = x;
@@ -18,6 +18,10 @@ public class Point implements Comparable<Point>, Cloneable{
     public int compareTo(Point o) {
         if (this.x != o.x) return this.x - o.x;
         return this.y - o.y;
+    }
+
+    public long distance(Point point){
+        return Math.round(Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2)));
     }
 
     @Override

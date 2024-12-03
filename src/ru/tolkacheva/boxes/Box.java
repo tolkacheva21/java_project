@@ -1,9 +1,10 @@
-package ru.tolkacheva.differentclasses;
+package ru.tolkacheva.boxes;
 
 public class Box <T>{
     private T obj;
 
     public T getObj() {
+        if (obj == null) throw new RuntimeException();
         T temp = obj;
         obj = null;
         return temp;
