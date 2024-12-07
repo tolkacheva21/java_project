@@ -3,6 +3,7 @@ package ru.tolkacheva.main;
 import ru.tolkacheva.animals.*;
 import ru.tolkacheva.birds.*;
 import ru.tolkacheva.boxes.Box;
+import ru.tolkacheva.functional.BiConsumer;
 import ru.tolkacheva.functional.DataStream;
 import ru.tolkacheva.functional.Supplier;
 import ru.tolkacheva.geometry.*;
@@ -15,29 +16,18 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Line<Point> line1 = Line.of(1, 2, 3, 4);
-        moveLineX(line1);
-        System.out.println(line1);
-
-        Box<Integer> box1 = new Box<>();
-        Box<Double> box2 = new Box<>();
-        Box<Integer> box3 = new Box<>();
-        box1.setObj(1);
-        box2.setObj(-3.4);
-        box3.setObj(8);
-        System.out.println(maxBox(List.of(box1, box2, box3)));
-
-        Box<Point3D> box4 = new Box<>();
-        putPoint3D(box4);
-        System.out.println(box4.getObj());
-
-        List<Number> lst = new ArrayList<>();
-        lst.add(3.3);
-        putNumbers(lst);
-        System.out.println(lst);
-
-//        List<Integer> list1 = List.of(1, -3, 7);
-//        DataStream.collect(list1, a -> new ArrayList<>(), a, b -> a.add(b));
+        List<Point> initList = List.of(new Point(1, 2), new Point(-3, 4),
+                new Point(5, 6));
+//        initList = DataStream.filter(initList, a -> (a.x > 0 && a.y > 0));
+//        System.out.println(initList);
+//        initList = DataStream.map(initList, p -> new Point(p.x + 5, p.y));
+//        System.out.println(initList);
+        Polyline polyline = DataStream.of(initList).filter(a -> a.x > 0)
+                .filter(p -> p.y > 0)
+                .map(p -> new Point(p.x + 5, p.y))
+                .collect(Polyline::new,
+                (line, p) -> line.points.add(p));
+        System.out.println(polyline);
     }
 
     public static void putNumbers(List<Number> list){
@@ -63,7 +53,7 @@ public class Main {
     }
 
     public static void moveLineX(Line<? extends Point> line){
-        line.getPoint1().x = line.getPoint1().x + 10;
+        line.getPoint1().x = line.getPoint1().x + 5;
     }
 
     public static void test(Meowable meowable){
@@ -128,5 +118,24 @@ public class Main {
         int x1 = parseInt(x);
         int y1 = parseInt(y);
         return pow(x1, y1);
+    }
+}
+
+class ListSupplier implements Supplier<List<List<Integer>>>{
+
+    @Override
+    public List<List<Integer>> get() {
+        List<List<Integer>> res = new ArrayList<>();
+        res.add(new ArrayList<>());
+        res.add(new ArrayList<>());
+        return res;
+    }
+}
+
+class ListConsumer implements BiConsumer<List<List<Integer>>, Integer>{
+    @Override
+    public void accept(List<List<Integer>> collection, Integer value) {
+        if (value > 0) collection.get(0).add(value);
+        else collection.get(1).add(value);
     }
 }

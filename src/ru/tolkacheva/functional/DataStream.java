@@ -7,9 +7,19 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DataStream {
+public class DataStream <T>{
 
-    public static <T> Optional<T> reduce(List<T> values, Function<T> fun){
+    private List<T> values;
+
+    private DataStream(List<T> values) {
+        this.values = values;
+    }
+
+    public static  <T> DataStream<T> of(List<T> values){
+        return new DataStream(values);
+    }
+
+    public Optional<T> reduce(Function<T> fun){
         if (values.isEmpty()) return Optional.empty();
         T res = values.get(0);
         for (T x: values.subList(1, values.size())){
@@ -18,25 +28,29 @@ public class DataStream {
         return Optional.of(res);
     }
 
-    public static <T> List<T> filter(List<T> values, FilterRule<T> rule){
+    public DataStream<T> filter(FilterRule<T> rule){
         List<T> list = new ArrayList<>();
         for (T x: values){
             if (rule.check(x)){
                 list.add(x);
             }
         }
-        return list;
+        this.values = list;
+        return this;
     }
 
-    public static <T, R> List<R> map(List<T> lst, Method<T, R> fun){
-        List<R> list = new ArrayList<>();
-        for(T x: lst){
+    @SuppressWarnings("unchecked")
+    public <R> DataStream<R> map(Method<T, R> fun){
+        List list = new ArrayList<>();
+        for(T x: values){
             list.add(fun.apply(x));
         }
-        return list;
+        DataStream<R> res = (DataStream<R>) this;
+        res.values = list;
+        return res;
     }
 
-    public static <P, T> P collect(List<T> values, Supplier<P> supplier, BiConsumer<P, T> adder){
+    public <P> P collect(Supplier<P> supplier, BiConsumer<P, T> adder){
         P result = supplier.get();
         for (T x: values){
             adder.accept(result, x);

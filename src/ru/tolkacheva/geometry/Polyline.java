@@ -6,14 +6,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Polyline implements Lengthable, PolylineGetable{
-    List<Point> points;
+    public List<Point> points = new ArrayList<>();
 
     public Polyline(List<Point> points) {
         this.points = points;
     }
 
     public Polyline(Point... points){
-        this(Arrays.asList(points));
+        this(new ArrayList<>(Arrays.asList(points)));
     }
 
     public Polyline() {}
