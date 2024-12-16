@@ -16,18 +16,13 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Point> initList = List.of(new Point(1, 2), new Point(-3, 4),
-                new Point(5, 6));
-//        initList = DataStream.filter(initList, a -> (a.x > 0 && a.y > 0));
-//        System.out.println(initList);
-//        initList = DataStream.map(initList, p -> new Point(p.x + 5, p.y));
-//        System.out.println(initList);
-        Polyline polyline = DataStream.of(initList).filter(a -> a.x > 0)
-                .filter(p -> p.y > 0)
-                .map(p -> new Point(p.x + 5, p.y))
-                .collect(Polyline::new,
-                (line, p) -> line.points.add(p));
-        System.out.println(polyline);
+        Student student = new Student("Vasya", 2, 3, 4);
+        System.out.println(student);
+        Save<Student> save = student.save();
+        student.setMarks(5);
+        System.out.println(student);
+        save.loadSave();
+        System.out.println(student);
     }
 
     public static void putNumbers(List<Number> list){

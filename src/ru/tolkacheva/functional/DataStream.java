@@ -1,15 +1,11 @@
 package ru.tolkacheva.functional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.*;
 
 public class DataStream <T>{
 
     private List<T> values;
+    private List<MyOperation> operations = new ArrayList<>();
 
     private DataStream(List<T> values) {
         this.values = values;
@@ -19,35 +15,51 @@ public class DataStream <T>{
         return new DataStream(values);
     }
 
-    public Optional<T> reduce(Function<T> fun){
-        if (values.isEmpty()) return Optional.empty();
-        T res = values.get(0);
-        for (T x: values.subList(1, values.size())){
+    public T reduce(Function<T> fun, T init){
+        T res = init;
+        up:
+        for (T x: values){
+            for (MyOperation op: operations){
+                x = (T)op.make(x);
+                if (op.isEnd()) continue up;
+            }
             res = fun.apply(res, x);
         }
-        return Optional.of(res);
+        return res;
     }
 
     public DataStream<T> filter(FilterRule<T> rule){
-        List<T> list = new ArrayList<>();
-        for (T x: values){
-            if (rule.check(x)){
-                list.add(x);
+
+        operations.add(new MyOperation() {
+            boolean res;
+            @Override
+            public Object make(Object obj) {
+                res = rule.check((T) obj);
+                return obj;
             }
-        }
-        this.values = list;
+
+            @Override
+            public boolean isEnd() {
+                return !res;
+            }
+        });
         return this;
     }
 
     @SuppressWarnings("unchecked")
     public <R> DataStream<R> map(Method<T, R> fun){
-        List list = new ArrayList<>();
-        for(T x: values){
-            list.add(fun.apply(x));
-        }
-        DataStream<R> res = (DataStream<R>) this;
-        res.values = list;
-        return res;
+        operations.add(new MyOperation() {
+            @Override
+            public Object make(Object obj) {
+                return fun.apply((T) obj);
+            }
+
+            @Override
+            public boolean isEnd() {
+                return false;
+            }
+        });
+        return (DataStream<R>)this;
     }
 
     public <P> P collect(Supplier<P> supplier, BiConsumer<P, T> adder){
@@ -57,4 +69,9 @@ public class DataStream <T>{
         }
         return result;
     }
+}
+
+interface MyOperation{
+    Object make(Object obj);
+    boolean isEnd();
 }
