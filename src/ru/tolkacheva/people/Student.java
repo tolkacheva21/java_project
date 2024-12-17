@@ -25,6 +25,8 @@ public class Student implements Comparable<Student> {
 
     public void setName(String name) {
         if (name == null || name.isBlank()) throw new IllegalArgumentException("name must not be empty");
+        String temp = this.name;
+        operations.push(()->this.name = temp);
         this.name = name;
     }
 
@@ -32,12 +34,12 @@ public class Student implements Comparable<Student> {
         for (int x : marks) {
             if (!rule.check(x)) throw new IllegalArgumentException();
         }
+        //int tmpMarks = new ArrayList<>(this.marks);
+        //operations.push(()->this.marks = tmpMarks); - переделать
         this.marks.addAll(marks);
     }
 
-    public void setMarks(Integer... marks) throws IllegalGradeException {
-        String temp = this.name;
-        operations.push(()->this.name = temp);
+    public void setMarks(Integer... marks) {
         setMarks(Arrays.asList(marks));
     }
 
@@ -46,6 +48,9 @@ public class Student implements Comparable<Student> {
     }
 
     public int removeMark(int value){
+        int ind = marks.indexOf(value); // подумать и переделать (но вроде правильно)
+        int tempMark = marks.get(ind);
+        operations.push(()->marks.add(tempMark));
         return marks.remove(value);
     }
 

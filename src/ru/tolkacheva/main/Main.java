@@ -4,10 +4,10 @@ import ru.tolkacheva.animals.*;
 import ru.tolkacheva.birds.*;
 import ru.tolkacheva.boxes.Box;
 import ru.tolkacheva.functional.BiConsumer;
-import ru.tolkacheva.functional.DataStream;
 import ru.tolkacheva.functional.Supplier;
 import ru.tolkacheva.geometry.*;
 import ru.tolkacheva.people.*;
+import ru.tolkacheva.trafficlight.*;
 
 import static java.lang.Integer.parseInt;
 import static java.lang.Math.pow;
@@ -16,13 +16,12 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        Student student = new Student("Vasya", 2, 3, 4);
-        System.out.println(student);
-        Save<Student> save = student.save();
-        student.setMarks(5);
-        System.out.println(student);
-        save.loadSave();
-        System.out.println(student);
+        TrafficLight tf = new TrafficLight();
+        tf.next();
+        tf.next();
+        tf.next();
+        tf.next();
+        tf.next();
     }
 
     public static void putNumbers(List<Number> list){
