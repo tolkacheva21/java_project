@@ -14,8 +14,17 @@ public final class Storage <T>{
     }
 
     @SuppressWarnings("unchecked")
-    public static <T> Storage <T> empty(){
+    public static <T> Storage <T> emptyStorage(){
         return EMPTY_STORAGE;
+    }
+
+    public static <T> Storage <T> createNotNull(T obj){
+        if (obj == null) throw new RuntimeException("object mustn't be empty");
+        return new Storage(obj);
+    }
+
+    public static <T> Storage <T> createWithNull(T obj){
+        return new Storage(obj);
     }
 
     @SuppressWarnings("unchecked")

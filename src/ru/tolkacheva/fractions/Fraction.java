@@ -1,4 +1,4 @@
-package ru.tolkacheva.differentclasses;
+package ru.tolkacheva.fractions;
 
 final public class Fraction extends Number implements Cloneable{
     private final int chisl;
