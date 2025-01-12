@@ -3,10 +3,14 @@ package ru.tolkacheva.main;
 import ru.tolkacheva.animals.*;
 import ru.tolkacheva.birds.*;
 import ru.tolkacheva.boxes.Box;
+import ru.tolkacheva.database.Connection;
+import ru.tolkacheva.database.Database;
+import ru.tolkacheva.fractions.FractionGenerator;
 import ru.tolkacheva.functional.BiConsumer;
 import ru.tolkacheva.functional.Supplier;
 import ru.tolkacheva.geometry.*;
 import ru.tolkacheva.people.*;
+import ru.tolkacheva.temperature.Temperature;
 import ru.tolkacheva.trafficlight.*;
 
 import static java.lang.Integer.parseInt;
@@ -16,12 +20,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        TrafficLight tf = new TrafficLight();
-        tf.next();
-        tf.next();
-        tf.next();
-        tf.next();
-        tf.next();
+        Temperature temperature = Temperature.getInstance(-60, -50);
+
+        //temperature.changeWeather();
+        System.out.println(temperature);
     }
 
     public static void putNumbers(List<Number> list){

@@ -1,5 +1,7 @@
 package ru.tolkacheva.fractions;
 
+import java.util.Objects;
+
 final public class Fraction extends Number implements Cloneable{
     private final int chisl;
     private final int znam;
@@ -65,5 +67,18 @@ final public class Fraction extends Number implements Cloneable{
         } catch (CloneNotSupportedException e){
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Fraction fraction = (Fraction) o;
+        return chisl == fraction.chisl && znam == fraction.znam;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(chisl, znam);
     }
 }
