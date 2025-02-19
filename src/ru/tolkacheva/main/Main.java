@@ -3,27 +3,47 @@ package ru.tolkacheva.main;
 import ru.tolkacheva.animals.*;
 import ru.tolkacheva.birds.*;
 import ru.tolkacheva.boxes.Box;
-import ru.tolkacheva.database.Connection;
-import ru.tolkacheva.database.Database;
-import ru.tolkacheva.fractions.FractionGenerator;
 import ru.tolkacheva.functional.BiConsumer;
 import ru.tolkacheva.functional.Supplier;
 import ru.tolkacheva.geometry.*;
 import ru.tolkacheva.people.*;
-import ru.tolkacheva.temperature.Temperature;
-import ru.tolkacheva.trafficlight.*;
-
 import static java.lang.Integer.parseInt;
 import static java.lang.Math.pow;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class Main {
-    public static void main(String[] args) {
-        Temperature temperature = Temperature.getInstance(-60, -50);
+    public static void main(String[] args) throws FileNotFoundException {
+//        List<String> lst = List.of("qfuqi", "viwjb", "qvjnws");
+//        IntStream stream = lst.stream()
+//                .flatMapToInt(String::chars)
+//                .filter(c -> c == 'q');
+//        System.out.println(stream.count());
 
-        //temperature.changeWeather();
-        System.out.println(temperature);
+        Scanner scanner = new Scanner(new File("points.txt"));
+        //List<Point> points = List.of(new Point(-1, -2), new Point(3, 4), new Point(8, -3));
+
+        List<Polyline> polyList = Stream.generate(scanner::next)
+                .takeWhile(x->scanner.hasNext())
+                .map(str->str.split(" "))
+                .map(str -> new Point(
+                        Integer.parseInt(str[0]),
+                        Integer.parseInt(str[1])
+                ))
+                .distinct()
+                .map(p -> new Point(p.x, Math.abs(p.y)))
+                .sorted((p1, p2) -> p1.x - p2.x)
+                //.filter((p1, p2) -> p1.y == p2.y)
+                .map(Polyline::new)
+                .collect(ArrayList<Polyline>::new,
+                        (list, line) -> list.add(line),
+                        (list1, list2) -> list1.addAll(list2));
     }
 
     public static void putNumbers(List<Number> list){
