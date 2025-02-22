@@ -12,38 +12,53 @@ import static java.lang.Math.pow;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.io.IOException;
+import java.lang.reflect.Field;
+import java.nio.file.Files;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class Main {
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws IOException {
 //        List<String> lst = List.of("qfuqi", "viwjb", "qvjnws");
 //        IntStream stream = lst.stream()
 //                .flatMapToInt(String::chars)
 //                .filter(c -> c == 'q');
 //        System.out.println(stream.count());
 
-        Scanner scanner = new Scanner(new File("points.txt"));
+        File f = new File("points.txt");
+        Scanner scanner = new Scanner(f);
         //List<Point> points = List.of(new Point(-1, -2), new Point(3, 4), new Point(8, -3));
 
-        List<Polyline> polyList = Stream.generate(scanner::next)
-                .takeWhile(x->scanner.hasNext())
-                .map(str->str.split(" "))
-                .map(str -> new Point(
-                        Integer.parseInt(str[0]),
-                        Integer.parseInt(str[1])
-                ))
-                .distinct()
-                .map(p -> new Point(p.x, Math.abs(p.y)))
-                .sorted((p1, p2) -> p1.x - p2.x)
-                //.filter((p1, p2) -> p1.y == p2.y)
-                .map(Polyline::new)
-                .collect(ArrayList<Polyline>::new,
-                        (list, line) -> list.add(line),
-                        (list1, list2) -> list1.addAll(list2));
+//        List<Polyline> polyList = Files.lines(f.toPath())
+//                .map(str->str.split(" "))
+//                .map(str -> new Point(
+//                        Integer.parseInt(str[0]),
+//                        Integer.parseInt(str[1])
+//                ))
+//                .distinct()
+//                .sorted(Comparator.comparingInt(o -> o.x))
+//                .collect(Collectors.groupingBy(p -> p.y))
+//                .values()
+//                .stream()
+//                .map(Polyline::new)
+//                .toList();
+//
+//        System.out.println(polyList);
+
+        System.out.println(getAllFields(Point.class));
+    }
+
+    public static Set<Field> getAllFields(Class<?> difClass) {
+        if (difClass.equals(Object.class)) return Set.of();
+        Set<Field> fields = new HashSet<>();
+        fields.addAll(Set.of(difClass.getDeclaredFields()));
+        Class<?> classParents = difClass.getSuperclass();
+        fields.addAll(getAllFields(classParents));
+
+        return fields;
     }
 
     public static void putNumbers(List<Number> list){
