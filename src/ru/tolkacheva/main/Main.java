@@ -47,18 +47,6 @@ public class Main {
 //                .toList();
 //
 //        System.out.println(polyList);
-
-        System.out.println(getAllFields(Point.class));
-    }
-
-    public static Set<Field> getAllFields(Class<?> difClass) {
-        if (difClass.equals(Object.class)) return Set.of();
-        Set<Field> fields = new HashSet<>();
-        fields.addAll(Set.of(difClass.getDeclaredFields()));
-        Class<?> classParents = difClass.getSuperclass();
-        fields.addAll(getAllFields(classParents));
-
-        return fields;
     }
 
     public static void putNumbers(List<Number> list){

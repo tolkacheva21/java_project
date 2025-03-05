@@ -3,6 +3,7 @@ package ru.tolkacheva.people;
 public class Human {
     private Name name;
     private int height;
+    private int age;
     private final Human father;
     private String personalName;
 
@@ -20,6 +21,14 @@ public class Human {
 
     public int getHeight() {
         return height;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public Human getFather() {

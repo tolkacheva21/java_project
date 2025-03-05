@@ -1,4 +1,4 @@
-package ru.tolkacheva.entity;
+package ru.tolkacheva.reflection;
 
 import ru.tolkacheva.main.Main;
 
@@ -29,7 +29,7 @@ public abstract class Entity {
     @Override
     public String toString() {
         return getClass().getSimpleName()+"{"
-                + Main.getAllFields(getClass())
+                + MainReflection.getAllFields(getClass())
                 .stream()
                 .map(this::getFieldsView)
                 .collect(Collectors.joining())
