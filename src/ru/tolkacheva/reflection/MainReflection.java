@@ -1,5 +1,6 @@
 package ru.tolkacheva.reflection;
 
+import ru.tolkacheva.annotations.*;
 import ru.tolkacheva.geometry.Line;
 import ru.tolkacheva.geometry.Point;
 
@@ -7,10 +8,16 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@DefaultAn(MainReflection.class)
+@ToStringAn("NO")
+@ValidateAn(MainReflection.class)
+@TwoAn(first = "first", second = 2)
+@CacheAn()
 public class MainReflection {
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
 
@@ -22,6 +29,7 @@ public class MainReflection {
         System.out.println(line2);
     }
 
+    @InvokeAn
     public static void lineConnector(Line<?> line1, Line<?> line2)
             throws NoSuchFieldException, IllegalAccessException {
         Field fl1 = line1.getClass().getDeclaredField("point2");
@@ -72,7 +80,18 @@ public class MainReflection {
                 });
     }
 
-    public static void cache(Object obj) {
-
+    public static <T> T cache(T obj) {
+        Class<?> cls = obj.getClass();
+        List<Method> methods = List.of(cls.getMethods());
+        methods.stream().filter(m -> {
+            try {
+                return (boolean) m.invoke(obj);
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
+            } catch (InvocationTargetException e) {
+                throw new RuntimeException(e);
+            }
+        }).count();
+        return obj;
     }
 }

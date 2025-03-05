@@ -22,7 +22,7 @@ public class ObjectsReader <T> {
         List<T> lst = new ArrayList<>();
         Scanner scanner = new Scanner(file);
 
-        lst.add(scanner.nextLine());
+        //lst.add(scanner.nextLine());
 
         return lst;
     }
