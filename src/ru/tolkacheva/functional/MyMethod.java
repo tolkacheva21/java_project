@@ -1,5 +1,5 @@
 package ru.tolkacheva.functional;
 
-public interface Method <T, R>{
+public interface MyMethod<T, R>{
     R apply(T argument);
 }

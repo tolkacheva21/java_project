@@ -47,7 +47,7 @@ public class DataStream <T>{
     }
 
     @SuppressWarnings("unchecked")
-    public <R> DataStream<R> map(Method<T, R> fun){
+    public <R> DataStream<R> map(MyMethod<T, R> fun){
         operations.add(new MyOperation() {
             @Override
             public Object make(Object obj) {

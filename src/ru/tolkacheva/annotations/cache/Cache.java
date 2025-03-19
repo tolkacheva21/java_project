@@ -1,4 +1,4 @@
-package ru.tolkacheva.annotations;
+package ru.tolkacheva.annotations.cache;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,6 +6,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.METHOD)
-public @interface InvokeAn {
+@Target(ElementType.TYPE)
+public @interface Cache {
+    String[] value() default {};
 }

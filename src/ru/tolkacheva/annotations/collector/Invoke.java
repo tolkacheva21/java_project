@@ -1,4 +1,4 @@
-package ru.tolkacheva.annotations;
+package ru.tolkacheva.annotations.collector;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,9 +6,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE, ElementType.FIELD})
-public @interface ToStringAn {
-    String YES = "YES";
-    String NO = "NO";
-    String value() default YES;
+@Target(ElementType.METHOD)
+public @interface Invoke {
 }

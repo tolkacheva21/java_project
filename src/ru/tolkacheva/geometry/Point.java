@@ -1,5 +1,7 @@
 package ru.tolkacheva.geometry;
 
+import ru.tolkacheva.annotations.collector.Invoke;
+
 import java.util.Objects;
 
 public class Point implements Comparable<Point>, Cloneable{
@@ -19,7 +21,7 @@ public class Point implements Comparable<Point>, Cloneable{
         if (this.x != o.x) return this.x - o.x;
         return this.y - o.y;
     }
-
+    @Invoke
     public long distance(Point point){
         return Math.round(Math.sqrt(Math.pow(this.x - point.x, 2) + Math.pow(this.y - point.y, 2)));
     }

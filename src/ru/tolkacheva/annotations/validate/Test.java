@@ -1,4 +1,4 @@
-package ru.tolkacheva.annotations;
+package ru.tolkacheva.annotations.validate;
 
 
 import java.lang.annotation.ElementType;
@@ -7,8 +7,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface TwoAn {
-    String first();
-    int second();
+@Target(ElementType.METHOD)
+public @interface Test {
 }

@@ -1,20 +1,34 @@
-package ru.tolkacheva.reflection;
+package ru.tolkacheva.annotations.reflection;
 
-import ru.tolkacheva.main.Main;
+import ru.tolkacheva.annotations.reset.Default;
 
 import java.lang.reflect.Field;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public abstract class Entity {
     private static Set<Field> getAllFields(Class<?> difClass) {
         if (difClass.equals(Object.class)) return Set.of();
+        if (difClass.isAnnotationPresent(ToString.class)
+                && Objects.equals(difClass.getAnnotation(ToString.class).value(), ToString.NO)){
+            return Set.of();
+        }
         Set<Field> fields = new HashSet<>();
-        fields.addAll(Set.of(difClass.getDeclaredFields()));
+        for (Field f: difClass.getDeclaredFields()) {
+            if (f.isAnnotationPresent(ToString.class)
+                    && Objects.equals(f.getAnnotation(ToString.class).value(), ToString.YES)) {
+                fields.add(f);
+            }
+        }
         Class<?> classParents = difClass.getSuperclass();
-        fields.addAll(getAllFields(classParents));
-
+        for (Field f: classParents.getDeclaredFields()) {
+            if (f.isAnnotationPresent(ToString.class)
+                    && Objects.equals(f.getAnnotation(ToString.class).value(), ToString.YES)) {
+                fields.add(f);
+            }
+        }
         return fields;
     }
 
@@ -27,7 +41,7 @@ public abstract class Entity {
     }
 
     @Override
-    public String toString() {
+    public String toString() throws NullPointerException {
         return getClass().getSimpleName()+"{"
                 + MainReflection.getAllFields(getClass())
                 .stream()

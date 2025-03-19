@@ -1,4 +1,4 @@
-package ru.tolkacheva.reflection;
+package ru.tolkacheva.annotations.reflection;
 
 import java.io.File;
 import java.io.FileWriter;
