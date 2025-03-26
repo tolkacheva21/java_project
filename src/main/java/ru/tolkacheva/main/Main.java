@@ -1,5 +1,7 @@
 package ru.tolkacheva.main;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import ru.tolkacheva.animals.*;
 import ru.tolkacheva.birds.*;
 import ru.tolkacheva.boxes.Box;
@@ -47,6 +49,7 @@ public class Main {
 //                .toList();
 //
 //        System.out.println(polyList);
+        ApplicationContext con = new AnnotationConfigApplicationContext();
     }
 
     public static void putNumbers(List<Number> list){
