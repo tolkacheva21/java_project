@@ -14,41 +14,41 @@ public class MainSpring {
 
         ApplicationContext con = new AnnotationConfigApplicationContext("ru.tolkacheva.spring");
 
-//        Object hi = con.getBean("hello");
-//        System.out.println(hi);
-//
-//        Object rand1 = con.getBean("random");
-//        Object rand2 = con.getBean("random");
-//        System.out.println(rand1);
-//        System.out.println(rand2);
-//
-//        Object date = con.getBean("dateBean");
-//        System.out.println(date);
-//
-//        Predicate<Integer> num = (Predicate<Integer>) con.getBean("range");
-//        System.out.println(num.test(3));
-//
-//        Object max = con.getBean("max");
-//        Object min = con.getBean("min");
-//        System.out.println(max);
-//        System.out.println(min);
+        Object hi = con.getBean("hello");
+        System.out.println(hi);
 
-//        Feedback feedback1 = (Feedback) con.getBean("feedback");
-//        feedback1.setText("Очень хорошо");
-//        feedback1.setGrade(4);
-//        Feedback feedback2 = (Feedback) con.getBean("feedback");
-//        feedback2.setText("Сойдет");
-//        feedback2.setGrade(3);
-//        Feedback feedback3 = (Feedback) con.getBean("feedback");
-//        feedback3.setText("Сложно сказать");
-//        feedback3.setGrade((Integer) rand1);
-//        List<Feedback> lst = List.of(feedback1, feedback2, feedback3);
-//        System.out.println(feedback1);
-//        System.out.println(feedback2);
-//        System.out.println(feedback3);
+        Object rand1 = con.getBean("random");
+        Object rand2 = con.getBean("random");
+        System.out.println(rand1);
+        System.out.println(rand2);
 
-//        Feedback better = (Feedback) con.getBean("betterFB");
-//        System.out.println(better);
+        Object date = con.getBean("dateBean");
+        System.out.println(date);
+
+        Predicate<Integer> num = (Predicate<Integer>) con.getBean("range");
+        System.out.println(num.test(3));
+
+        Object max = con.getBean("max");
+        Object min = con.getBean("min");
+        System.out.println(max);
+        System.out.println(min);
+
+        Feedback feedback1 = (Feedback) con.getBean("feedback");
+        feedback1.setText("Очень хорошо");
+        feedback1.setGrade(4);
+        Feedback feedback2 = (Feedback) con.getBean("feedback");
+        feedback2.setText("Сойдет");
+        feedback2.setGrade(3);
+        Feedback feedback3 = (Feedback) con.getBean("feedback");
+        feedback3.setText("Сложно сказать");
+        feedback3.setGrade((Integer) rand1);
+        List<Feedback> lst = List.of(feedback1, feedback2, feedback3);
+        System.out.println(feedback1);
+        System.out.println(feedback2);
+        System.out.println(feedback3);
+
+//        Feedback best = (Feedback) con.getBean("bestFB");
+//        System.out.println(best);
 
 //        StudentBean std1 = con.getBean(StudentBean.class);
 //        std1.setName("Petya");

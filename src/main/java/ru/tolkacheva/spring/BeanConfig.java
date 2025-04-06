@@ -5,7 +5,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import ru.tolkacheva.spring.feedback.Feedback;
-import ru.tolkacheva.spring.student.StudentBean;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -22,11 +21,14 @@ public class BeanConfig {
     @Bean
     @Scope("prototype")
     public int random() {
-        int randNum = (int) (Math.random() * max() - Math.abs(min()));
-        if (!numsRand.contains(randNum)) {
-            numsRand.add(randNum);
+        if (numsRand.isEmpty()) {
+            for (int i = min(); i <= max(); i++) {
+                numsRand.add(i);
+            }
         }
-        return numsRand.stream().filter(x -> x == randNum).toList().getFirst();
+        Random random = new Random();
+        int randNum = random.nextInt(0, numsRand.size());
+        return numsRand.remove(randNum);
     }
 
     @Bean
@@ -56,13 +58,13 @@ public class BeanConfig {
     }
 
     @Bean
-    public Feedback betterFB(List<Feedback> feedbacks) {
-        Feedback better = feedbacks.get(0);
+    public Feedback bestFB(List<Feedback> feedbacks) {
+        Feedback best = feedbacks.get(0);
         for (int i = 0; i < feedbacks.size() - 1; i++) {
             if (feedbacks.get(i).getGrade() < feedbacks.get(i+1).getGrade()) {
-                better = feedbacks.get(i+1);
+                best = feedbacks.get(i+1);
             }
         }
-        return better;
+        return best;
     }
 }

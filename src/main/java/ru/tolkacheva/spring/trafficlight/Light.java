@@ -1,4 +1,4 @@
-package ru.tolkacheva.trafficlight;
+package ru.tolkacheva.spring.trafficlight;
 
 public enum Light implements State{
     RED{

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 
 public class EntityTest {
     class TestEntity extends Entity{
-        private int privateField;
+//        private int privateField;
         public int publicField;
         int protectField;
     }

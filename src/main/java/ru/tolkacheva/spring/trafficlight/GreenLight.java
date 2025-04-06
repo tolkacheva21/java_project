@@ -1,4 +1,4 @@
-package ru.tolkacheva.trafficlight;
+package ru.tolkacheva.spring.trafficlight;
 
 public class GreenLight implements State {
     static final State GREEN = new GreenLight();
