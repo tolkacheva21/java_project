@@ -1,13 +1,10 @@
 package ru.tolkacheva.annotations.reset;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
-public class MainReset {
-    public static void main(String[] args) {
-
-    }
-
+public class Reset {
     private static Set<Field> getAllFields(Object obj) {
         Set<Field> fields = new HashSet<>();
         fields.addAll(Set.of(obj.getClass().getDeclaredFields()));

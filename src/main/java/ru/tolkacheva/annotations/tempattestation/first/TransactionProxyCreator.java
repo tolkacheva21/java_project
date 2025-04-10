@@ -9,6 +9,6 @@ public class TransactionProxyCreator {
                 .newProxyInstance(
                         obj.getClass().getClassLoader(),
                         obj.getClass().getInterfaces(),
-                        new TransactionHandler());
+                        new TransactionHandler(obj));
     }
 }

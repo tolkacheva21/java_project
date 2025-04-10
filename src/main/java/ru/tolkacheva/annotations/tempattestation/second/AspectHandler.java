@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AspectHandler implements InvocationHandler {
+    private List<Method> before = new ArrayList<>();
+    private List<Method> after = new ArrayList<>();
+    private List<Method> met = new ArrayList<>();
+
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (method.isAnnotationPresent(Aspect.class)) {
             Class<?> clazz = method.getAnnotation(Aspect.class).value();
             Method[] methods = clazz.getDeclaredMethods();
-            List<Method> before = new ArrayList<>();
-            List<Method> after = new ArrayList<>();
-            List<Method> met = new ArrayList<>();
             for (Method m: methods) {
                 if (m.isAnnotationPresent(Before.class)) {
                     before.add(m);
