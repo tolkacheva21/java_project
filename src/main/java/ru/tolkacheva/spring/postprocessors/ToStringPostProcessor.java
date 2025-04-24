@@ -24,7 +24,7 @@ public class ToStringPostProcessor implements BeanPostProcessor {
     public @Nullable Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
         Set<Field> fields = getAllFields(bean.getClass());
         if (fields.isEmpty()) return bean;
-        return bean.toString();
+        return bean;
     }
 
     private static Set<Field> getAllFields(Class<?> difClass) {

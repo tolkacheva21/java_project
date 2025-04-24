@@ -3,8 +3,8 @@ package ru.tolkacheva.annotations.reflection;
 import ru.tolkacheva.annotations.*;
 import ru.tolkacheva.annotations.cache.Cache;
 import ru.tolkacheva.annotations.collector.Invoke;
-import ru.tolkacheva.geometry.Line;
-import ru.tolkacheva.geometry.Point;
+import ru.tolkacheva.sem3.geometry.Line;
+import ru.tolkacheva.sem3.geometry.Point;
 import ru.tolkacheva.annotations.reset.Default;
 import ru.tolkacheva.annotations.validate.Validate;
 
@@ -12,7 +12,7 @@ import java.lang.reflect.Field;
 import java.util.HashSet;
 import java.util.Set;
 
-@Default(MainReflection.class)
+@Default("MainReflection")
 @ToString("NO")
 @Validate(MainReflection.class)
 @Two(first = "first", second = 2)

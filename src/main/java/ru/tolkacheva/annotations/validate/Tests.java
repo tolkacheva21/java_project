@@ -1,6 +1,6 @@
 package ru.tolkacheva.annotations.validate;
 
-import ru.tolkacheva.geometry.Point;
+import ru.tolkacheva.sem3.geometry.Point;
 import ru.tolkacheva.annotations.reflection.ValidateException;
 
 //@Validate(Test.class)

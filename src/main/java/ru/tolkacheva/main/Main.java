@@ -2,25 +2,25 @@ package ru.tolkacheva.main;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import ru.tolkacheva.animals.*;
-import ru.tolkacheva.birds.*;
-import ru.tolkacheva.boxes.Box;
-import ru.tolkacheva.functional.BiConsumer;
-import ru.tolkacheva.functional.Supplier;
-import ru.tolkacheva.geometry.*;
-import ru.tolkacheva.people.*;
+import ru.tolkacheva.sem3.animals.*;
+import ru.tolkacheva.sem3.birds.*;
+import ru.tolkacheva.sem3.animals.Meowable;
+import ru.tolkacheva.sem3.birds.Bird;
+import ru.tolkacheva.sem3.boxes.Box;
+import ru.tolkacheva.sem3.functional.BiConsumer;
+import ru.tolkacheva.sem3.functional.Supplier;
+import ru.tolkacheva.sem3.geometry.*;
+import ru.tolkacheva.sem3.people.*;
+import ru.tolkacheva.sem3.geometry.*;
+import ru.tolkacheva.sem3.people.IllegalGradeException;
+import ru.tolkacheva.sem3.people.Student;
+
 import static java.lang.Integer.parseInt;
 import static java.lang.Math.pow;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.nio.file.Files;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(String[] args) throws IOException {

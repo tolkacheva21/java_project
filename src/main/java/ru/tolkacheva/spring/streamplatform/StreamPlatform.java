@@ -20,14 +20,6 @@ public class StreamPlatform {
         }
     }
 
-    public void withoutA() throws IOException {
-        Scanner scanner = new Scanner(fileIn);
-        FileWriter writer = new FileWriter(fileOut);
-        while (scanner.hasNextLine()) {
-            writer.write(scanner.nextLine().replace("a", ""));
-        }
-    }
-
     public void hasFourSymbols() throws IOException {
         Scanner scanner = new Scanner(fileIn);
         FileWriter writer = new FileWriter(fileOut);

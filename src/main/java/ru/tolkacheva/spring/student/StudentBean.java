@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-@Scope("prototype")
 public class StudentBean implements Comparable<StudentBean> {
     private String name;
     private List<Integer> grades = new ArrayList<>();

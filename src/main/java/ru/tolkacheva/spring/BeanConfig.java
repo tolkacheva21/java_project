@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
 import ru.tolkacheva.spring.feedback.Feedback;
+import ru.tolkacheva.spring.postprocessors.NamePostProcessor;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -57,14 +58,19 @@ public class BeanConfig {
         return -198976;
     }
 
-    @Bean
-    public Feedback bestFB(List<Feedback> feedbacks) {
-        Feedback best = feedbacks.get(0);
-        for (int i = 0; i < feedbacks.size() - 1; i++) {
-            if (feedbacks.get(i).getGrade() < feedbacks.get(i+1).getGrade()) {
-                best = feedbacks.get(i+1);
-            }
-        }
-        return best;
-    }
+//    @Bean
+//    public Feedback bestFB(List<Feedback> feedbacks) {
+//        Feedback best = feedbacks.get(0);
+//        for (int i = 0; i < feedbacks.size() - 1; i++) {
+//            if (feedbacks.get(i).getGrade() < feedbacks.get(i+1).getGrade()) {
+//                best = feedbacks.get(i+1);
+//            }
+//        }
+//        return best;
+//    }
+
+//    @Bean
+//    public NamePostProcessor namePostProcessor() {
+//        return new NamePostProcessor();
+//    }
 }
